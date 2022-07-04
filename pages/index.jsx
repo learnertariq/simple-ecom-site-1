@@ -6,7 +6,6 @@ import data from "../database/data";
 import { Store } from "../utils/Store";
 
 export default function Home({ products }) {
-  console.log(process.env.NEXT_PUBLIC_API_KEY);
   return (
     <Layout title="Homepage">
       <section className="container mx-auto grid grid-cols-5 gap-4">
