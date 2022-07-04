@@ -10,6 +10,7 @@ import Loading from "../components/Loading";
 import Image from "next/image";
 import auth from "../utils/firebase.init";
 import Alert from "../components/Alert";
+import Layout from "../components/Layout";
 
 const Login = () => {
   const router = useRouter();
@@ -46,42 +47,44 @@ const Login = () => {
   }
 
   return (
-    <section className="max-w-sm mx-auto mb-12">
-      <h2 className="text-4xl mb-8 font-bold text-center">Login</h2>
-      <div className="social-container mb-8 text-center">
-        <button
-          className="btn btn-primary btn-outline rounded-full"
-          onClick={() => signInWithGoogle()}
-        >
-          <Image src={googleLogo} alt="" width="30" height="30" />
-        </button>
-      </div>
-      <div className="divider">OR</div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          type="email"
-          {...register("email", { required: true })}
-          placeholder="Email"
-          className="input input-bordered input-primary w-full w-full mb-3"
-        />
-        <br />
-        <input
-          type="password"
-          {...register("password", { required: true })}
-          placeholder="Password"
-          className="input input-bordered input-primary w-full w-full mb-3"
-        />
-        <br />
-        {(error || errorGoogle) && (
-          <Alert>{error?.message || errorGoogle?.message}</Alert>
-        )}
-        <br />
+    <Layout title="Login">
+      <section className="max-w-sm mx-auto mb-12">
+        <h2 className="text-4xl mb-8 font-bold text-center">Login</h2>
+        <div className="social-container mb-8 text-center">
+          <button
+            className="btn btn-primary btn-outline rounded-full"
+            onClick={() => signInWithGoogle()}
+          >
+            <Image src={googleLogo} alt="" width="30" height="30" />
+          </button>
+        </div>
+        <div className="divider">OR</div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <input
+            type="email"
+            {...register("email", { required: true })}
+            placeholder="Email"
+            className="input input-bordered input-primary w-full w-full mb-3"
+          />
+          <br />
+          <input
+            type="password"
+            {...register("password", { required: true })}
+            placeholder="Password"
+            className="input input-bordered input-primary w-full w-full mb-3"
+          />
+          <br />
+          {(error || errorGoogle) && (
+            <Alert>{error?.message || errorGoogle?.message}</Alert>
+          )}
+          <br />
 
-        <button type="submit" className="btn btn-primary tracking-widest">
-          Login
-        </button>
-      </form>
-    </section>
+          <button type="submit" className="btn btn-primary tracking-widest">
+            Login
+          </button>
+        </form>
+      </section>
+    </Layout>
   );
 };
 

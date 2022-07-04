@@ -19,7 +19,7 @@ const CartItem = ({ item }) => {
           alt=""
         />
       </div>
-      <h3 className="text-2xl font-semibold">{item.name}</h3>
+      <h3 className="text-xl font-semibold">{item.name}</h3>
       <button
         className="btn btn-circle btn-error w-8"
         onClick={handleRemoveCartItem}

@@ -23,6 +23,14 @@ function reducer(state, action) {
       );
       return { ...state, cart: { ...state.cart, cartItems } };
     }
+    case "CART_UPDATE_ITEM": {
+      const cartItems = state.cart.cartItems.filter(
+        (i) => i.id != action.payload
+      );
+
+      const updatedCartItems = [...cartItems, action.payload];
+      return { ...state, cart: { ...state.cart, updatedCartItems } };
+    }
     default:
       return state;
   }
