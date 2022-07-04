@@ -1,8 +1,18 @@
-import React, { useContext } from "react";
+import Image from "next/image";
+import React, { useContext, useEffect, useState } from "react";
 import { Store } from "../utils/Store";
 
 const TableRow = ({ item, index }) => {
   const { state, dispatch } = useContext(Store);
+  const [tempQuantity, setTempQuantity] = useState(item.quantity);
+
+  const handleChangeValue = (e) => {
+    const newQuantity = e.target.value;
+    setTempQuantity(newQuantity);
+    const updatedItem = { ...item, quantity: newQuantity };
+
+    dispatch({ type: "CART_UPDATE_ITEM", payload: updatedItem });
+  };
 
   const handleRemoveCartItem = () => {
     dispatch({ type: "CART_REMOVE_ITEM", payload: item.id });
@@ -10,9 +20,31 @@ const TableRow = ({ item, index }) => {
 
   return (
     <tr key={item.id}>
-      <th>{index + 1}</th>
+      <th>
+        <div className="w-16 rounded-full">
+          <Image
+            className="rounded-full"
+            src={item.img}
+            width="100"
+            height="100"
+            alt=""
+          />
+        </div>
+      </th>
       <td>{item.name}</td>
-      <td>{item.quantity}</td>
+      <td>
+        <select
+          name="quantity"
+          value={tempQuantity}
+          onChange={handleChangeValue}
+        >
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </td>
       <td>{item.price * item.quantity}</td>
       <td>
         <button

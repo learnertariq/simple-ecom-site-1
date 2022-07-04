@@ -26,7 +26,7 @@ const CartPage = () => {
             </thead>
             <tbody>
               {state.cart.cartItems?.map((i, index) => (
-                <TableRow key={i.id} item={i} index={i.index} />
+                <TableRow key={i.id} item={i} />
               ))}
             </tbody>
           </table>
